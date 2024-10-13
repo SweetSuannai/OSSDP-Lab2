@@ -42,15 +42,16 @@ class Solution9 {
         int[] fa = new int[n + 1];
         Arrays.fill(fa, -1);
         List<Integer>[] g = new List[n + 1];
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i <= n; ++i) {
             g[i] = new ArrayList<Integer>();
         }
-        for (int[] p : dislikes)
+        for (int[] p : dislikes) {
             g[p[0]].add(p[1]);
             g[p[1]].add(p[0]);
+        }
         for (int i = 1; i <= n; ++i) {
             for (int j = 0; j < g[i].size(); ++j) {
-                unit(g[i].get(0), g[i].get(j), fa);
+                unit(g[i].get(i), g[i].get(j), fa);
                 if (isconnect(i, g[i].get(j), fa)) {
                     return false;
                 }
